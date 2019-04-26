@@ -14,7 +14,21 @@ if [ $# == '0' ]; then
 	builtin cd
 #	echo -e "Function missing ARG\nRun with --help for more information";
 elif [ $1 == '--help' ] || [ $1 == '-h' ] || [ $1 == '-?' ]; then
-	echo -e "HELP PAGE TO GO HERE"
+	echo -e """
+CDANDLS Function:
+
+The CDANDLS function is a small function that is meant to replace
+the builtin cd command. It still does the same thing as the original
+command, exept, this function will automatically perform the ls command
+after changing into a different directory to list its contents.
+
+More specifically, the function will perform the ls command with the
+'--group-directories-first' option added, to make it easier to see
+the sub-directories, and figure out which directory you need to go
+into next.
+
+"""
+    read -n 1
 elif [ $1 == '-v' ] || [ $1 == '--version' ]; then
 	echo -e "CDANDLS v$__version__";
 else
@@ -24,7 +38,9 @@ else
 	\ls -aF --color=always --group-directories-first;
 	# Uncomment line below to add extra line at the bottom
 	# that displays current directory
-	#echo -e "\n\e[01;05;33m[ 📁: `dirs` ]\e[m\n";
+# If you want to add a line that displays the current working
+# dir, like the '\w' ps1 option, just uncomment the line below.
+#echo -e "\n\e[01;05;33m[ 📁: `dirs` ]\e[m";
 	echo -e "\e[m ";	# Line to reset default text color
 	unset DIRTOCD
 fi

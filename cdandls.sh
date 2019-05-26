@@ -8,8 +8,8 @@
 #	into the dir.
 # Inst: Add cdandls.sh to autoload script to load cd function
 
-__version__=1.1
-function cd(){
+__version__=1.2
+function cdandls(){
 if [ $# == '0' ]; then
 	echo -e "Function missing ARG\nRun with --help for more information";
 elif [ $1 == '--help' ] || [ $1 == '-h' ] || [ $1 == '-?' ]; then
@@ -27,7 +27,13 @@ else
 fi
 }
 
+alias cd='cdandls' 
+
 # CHANGES
+#
+# version 1.2
+# - changed function name from cd  to cdandls 
+# - alias named cd that points to cdandls added 
 #
 # version 1.1
 #	- added options: --help, -v
